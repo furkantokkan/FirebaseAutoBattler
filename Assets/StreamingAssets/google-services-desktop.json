@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "373894505679",
+    "project_id": "gangcult-a7e23",
+    "storage_bucket": "gangcult-a7e23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373894505679:android:6809c1c4670efb733803ba",
+        "android_client_info": {
+          "package_name": "com.firebaseauto.battler"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHfTD2wgst7KR7T1QsbxZnGx6ztb6yj_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
