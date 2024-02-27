@@ -1,2 +1,4 @@
 *.so filter=lfs diff=lfs merge=lfs -text
 *.bundle filter=lfs diff=lfs merge=lfs -text
+Assets/Fantasy[[:space:]]RPG[[:space:]]UI[[:space:]]Pack/PSD/RPG_Loading_bars.psd filter=lfs diff=lfs merge=lfs -text
+Assets/Fantasy[[:space:]]RPG[[:space:]]UI[[:space:]]Pack/PSD/Fantasy[[:space:]]RPG[[:space:]]UI.psd filter=lfs diff=lfs merge=lfs -text

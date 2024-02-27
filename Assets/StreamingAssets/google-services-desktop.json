@@ -7,20 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:373894505679:android:6809c1c4670efb733803ba",
+        "mobilesdk_app_id": "1:373894505679:ios:e951910936220f263803ba",
         "android_client_info": {
           "package_name": "com.firebaseauto.battler"
         }
       },
-      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBHfTD2wgst7KR7T1QsbxZnGx6ztb6yj_4"
+          "current_key": "AIzaSyCE29Cghu5NgedAVAdzA3CvcqtUnmvXuqE"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "status": 1
         }
       }
     }
