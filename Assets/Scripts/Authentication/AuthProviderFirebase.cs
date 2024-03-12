@@ -1,0 +1,145 @@
+using Firebase;
+using Firebase.Auth;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AuthProviderFirebase : AuthProvider
+{
+    FirebaseAuth auth;
+
+    bool isInitialized = false;
+    public override void Initialize(string[] args)
+    {
+        auth = FirebaseAuth.DefaultInstance;
+        Debug.Log("Firebase Auth Initialized");
+
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        {
+            var dependencyStatus = task.Result;
+            if (dependencyStatus == DependencyStatus.Available)
+            {
+                // Create and hold a reference to your FirebaseApp,
+                // where app is a Firebase.FirebaseApp property of your application class.
+                //   app = Firebase.FirebaseApp.DefaultInstance;
+
+                // Set a flag here to indicate whether Firebase is ready to use by your app.
+                isInitialized = true;
+            }
+            else
+            {
+                UnityEngine.Debug.LogError(System.String.Format(
+                                     "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                // Firebase Unity SDK is not safe to use here.
+            }
+        });
+    }
+
+    public override bool IsLoggedIn()
+    {
+        return VariableManager.instance.LocalVariableExists(GameConst.USER_NAME_LOGIN_KEY) && VariableManager.instance.LocalVariableExists(GameConst.USER_PASSWORD_KEY);
+    }
+
+    public override void Login(string userName, string password)
+    {
+        if (!isInitialized) return;
+        StartCoroutine(LoginBG(userName, password));
+    }
+
+    public override void Logout()
+    {
+        auth.SignOut();
+
+        Debug.Log("Logged out");
+
+        VariableManager.instance.DeleteLocalVariable(GameConst.USER_NAME_LOGIN_KEY);
+        VariableManager.instance.DeleteLocalVariable(GameConst.USER_PASSWORD_KEY);
+    }
+
+    public override void Register(string userName, string password)
+    {
+        if (!isInitialized) return;
+        StartCoroutine(RegisterBG(userName, password));
+    }
+
+    public override string Vendor()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private IEnumerator LoginBG(string userName, string password)
+    {
+        var loginTask = auth.SignInWithEmailAndPasswordAsync(userName, password);
+
+        yield return new WaitUntil(() => loginTask.IsCompleted);
+
+        if (loginTask.Exception != null)
+        {
+            FirebaseException firebaseException = loginTask.Exception.GetBaseException() as FirebaseException;
+            AuthError errorCode = (AuthError)firebaseException.ErrorCode;
+
+            string message;
+            switch (errorCode)
+            {
+                case AuthError.WrongPassword:
+                    message = "Wrong Password";
+                    Debug.LogWarning("Wrong Password");
+                    break;
+                case AuthError.UserNotFound:
+                    message = "User not found";
+                    Debug.LogWarning("User not found");
+                    break;
+                default:
+                    message = "Error Code: " + errorCode.ToString();
+                    Debug.LogWarning(message);
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("Logged in");
+
+            VariableManager.instance.AddLocalVariable(GameConst.USER_NAME_LOGIN_KEY, userName);
+            VariableManager.instance.AddLocalVariable(GameConst.USER_PASSWORD_KEY, password);
+        }
+    }
+
+    private IEnumerator RegisterBG(string userName, string password)
+    {
+        var registerTask = auth.CreateUserWithEmailAndPasswordAsync(userName, password);
+
+        yield return new WaitUntil(() => registerTask.IsCompleted);
+
+        if (registerTask.Exception != null)
+        {
+            FirebaseException firebaseException = registerTask.Exception.GetBaseException() as FirebaseException;
+            AuthError errorCode = (AuthError)firebaseException.ErrorCode;
+
+            string message;
+            switch (errorCode)
+            {
+                case AuthError.EmailAlreadyInUse:
+                    message = "E-mail adress is already in use. Please try another one.";
+                    Debug.LogWarning("E-mail already in use");
+                    break;
+                case AuthError.InvalidEmail:
+                    message = "Invalid E-mail adress. Please try another one.";
+                    Debug.LogWarning("Invalid Email");
+                    break;
+                case AuthError.WeakPassword:
+                    Debug.LogWarning("Weak Password");
+                    message = "Password is too weak. Please try another one.";
+                    break;
+                default:
+                    message = "Error Code: " + errorCode.ToString();
+                    Debug.LogWarning(message);
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("Registered");
+        }
+    }
+}

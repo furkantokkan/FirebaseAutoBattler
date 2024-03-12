@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class UIStandart : MonoBehaviour
 {
-    public GameObject Backgroud;
-    public GameObject InfoWindow;
-    public GameObject ErrorWindow;
-    public GameObject ConfirmWindow;
-    public GameObject PromptWindow;
-    public GameObject LoadingWindow;
+    [SerializeField] private GameObject Backgroud;
+    [SerializeField] private GameObject InfoWindow;
+    [SerializeField] private GameObject ErrorWindow;
+    [SerializeField] private GameObject ConfirmWindow;
+    [SerializeField] private GameObject PromptWindow;
+    [SerializeField] private GameObject LoadingWindow;
 
     private void Start()
     {
@@ -60,9 +60,12 @@ public class UIStandart : MonoBehaviour
     {
         CloseAllWindows();
         Backgroud.SetActive(true);
+        Backgroud.transform.SetAsLastSibling();
         LoadingWindow.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = title;
         LoadingWindow.transform.Find("Message").GetComponent<TextMeshProUGUI>().text = message;
         LoadingWindow.SetActive(true);
+        LoadingWindow.transform.SetAsLastSibling();
+        transform.SetAsLastSibling();
     }
     public void HideLoading()
     {
@@ -86,7 +89,10 @@ public class UIStandart : MonoBehaviour
         });
 
         InfoWindow.SetActive(true);
+        InfoWindow.transform.SetAsLastSibling();
         Backgroud.SetActive(true);
+        Backgroud.transform.SetAsLastSibling();
+        transform.SetAsLastSibling();
     }
 
     public void Error(string title = "Error", string message = "Some error has occured!", Action onComplete = null)
@@ -103,10 +109,14 @@ public class UIStandart : MonoBehaviour
             Backgroud.SetActive(false);
             onComplete?.Invoke();
         });
+
         ErrorWindow.SetActive(true);
+        ErrorWindow.transform.SetAsLastSibling();
         Backgroud.SetActive(true);
-    }  
-    
+        Backgroud.transform.SetAsLastSibling();
+        transform.SetAsLastSibling();
+    }
+
     public void Confirm(string title, string message, string yesButtonCaption = "YES", string noButtonCaption = "NO", Action onYes = null, Action onNo = null)
     {
         CloseAllWindows();
@@ -135,7 +145,10 @@ public class UIStandart : MonoBehaviour
         });
 
         Backgroud.SetActive(true);
+        Backgroud.transform.SetAsLastSibling();
         ConfirmWindow.SetActive(true);
+        ConfirmWindow.transform.SetAsLastSibling();
+        transform.SetAsLastSibling();
     }
     public void Prompt(string title, string message, string defaultValue, string placeHolder, Action<string> onOk)
     {
@@ -156,6 +169,9 @@ public class UIStandart : MonoBehaviour
         });
 
         PromptWindow.SetActive(true);
+        PromptWindow.transform.SetAsLastSibling();
         Backgroud.SetActive(true);
+        Backgroud.transform.SetAsLastSibling();
+        transform.SetAsLastSibling();
     }
 }

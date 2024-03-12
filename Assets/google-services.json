@@ -12,7 +12,12 @@
           "package_name": "com.firebaseauto.battler"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "373894505679-4o55uo0a2t7stbglribs4af8v66i9pqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBHfTD2wgst7KR7T1QsbxZnGx6ztb6yj_4"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373894505679-4o55uo0a2t7stbglribs4af8v66i9pqf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "373894505679-627502rec1la05qr95mc88nisijvr2fj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.firebaseauto.battler"
+              }
+            }
+          ]
         }
       }
     }
