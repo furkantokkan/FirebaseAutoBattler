@@ -16,6 +16,12 @@ public class UIMainMenu : MonoBehaviour
     private void Start()
     {
         RegisterWindow.SetActive(false);
+        LoginWindow.SetActive(false);
+
+        //if(AuthenticationManager.instance.GetProvider().IsLoggedIn())
+        //{
+        //    UIStandart.Info("Welcome", "You are already logged in!");
+        //}
     }
 
     public void Register()
