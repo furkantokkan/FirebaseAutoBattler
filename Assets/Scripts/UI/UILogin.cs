@@ -25,6 +25,21 @@ public class UILogin : MonoBehaviour
         }
 
         UIStandart.ShowLoading("Logging in", "Please wait...");
+
+        AuthenticationManager.instance.GetProvider().Login(InputUserName.text.Trim(), InputPassword.text.Trim(), (result, message) =>
+        {
+            UIStandart.HideLoading();
+
+            if (result)
+            {
+                UIStandart.Info("Success", "You have successfully logged in!");
+            }
+            else
+            {
+                UIStandart.HideLoading();
+                UIStandart.Error("Error", message);
+            }
+        });
     }
 
     private bool CheckInputIsValid()

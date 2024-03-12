@@ -3,6 +3,7 @@ using Firebase.Auth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class AuthProviderFirebase : AuthProvider
@@ -41,10 +42,10 @@ public class AuthProviderFirebase : AuthProvider
         return VariableManager.instance.LocalVariableExists(GameConst.USER_NAME_LOGIN_KEY) && VariableManager.instance.LocalVariableExists(GameConst.USER_PASSWORD_KEY);
     }
 
-    public override void Login(string userName, string password)
+    public override void Login(string userName, string password, Action<bool, string> onComplete)
     {
         if (!isInitialized) return;
-        StartCoroutine(LoginBG(userName, password));
+        StartCoroutine(LoginBG(userName, password, onComplete));
     }
 
     public override void Logout()
@@ -57,10 +58,10 @@ public class AuthProviderFirebase : AuthProvider
         VariableManager.instance.DeleteLocalVariable(GameConst.USER_PASSWORD_KEY);
     }
 
-    public override void Register(string userName, string password)
+    public override void Register(string userName, string password, Action<bool, string> onComplete)
     {
         if (!isInitialized) return;
-        StartCoroutine(RegisterBG(userName, password));
+        StartCoroutine(RegisterBG(userName, password, onComplete));
     }
 
     public override string Vendor()
@@ -68,7 +69,7 @@ public class AuthProviderFirebase : AuthProvider
         throw new System.NotImplementedException();
     }
 
-    private IEnumerator LoginBG(string userName, string password)
+    private IEnumerator LoginBG(string userName, string password, Action<bool, string> onComplete)
     {
         var loginTask = auth.SignInWithEmailAndPasswordAsync(userName, password);
 
@@ -95,6 +96,8 @@ public class AuthProviderFirebase : AuthProvider
                     Debug.LogWarning(message);
                     break;
             }
+
+            onComplete?.Invoke(false, message);
         }
         else
         {
@@ -102,10 +105,11 @@ public class AuthProviderFirebase : AuthProvider
 
             VariableManager.instance.AddLocalVariable(GameConst.USER_NAME_LOGIN_KEY, userName);
             VariableManager.instance.AddLocalVariable(GameConst.USER_PASSWORD_KEY, password);
+            onComplete?.Invoke(true, "Logged in");
         }
     }
 
-    private IEnumerator RegisterBG(string userName, string password)
+    private IEnumerator RegisterBG(string userName, string password, Action<bool, string> onComplete)
     {
         var registerTask = auth.CreateUserWithEmailAndPasswordAsync(userName, password);
 
@@ -136,10 +140,13 @@ public class AuthProviderFirebase : AuthProvider
                     Debug.LogWarning(message);
                     break;
             }
+
+            onComplete?.Invoke(false, message);
         }
         else
         {
             Debug.Log("Registered");
+            onComplete?.Invoke(true, "Registered!");
         }
     }
 }

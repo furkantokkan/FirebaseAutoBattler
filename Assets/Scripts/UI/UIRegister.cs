@@ -27,6 +27,20 @@ public class UIRegister : MonoBehaviour
         }
 
         UIStandart.ShowLoading("Registering", "Please wait...");
+
+        AuthenticationManager.instance.GetProvider().Register(InputUserName.text.Trim(), InputPassword.text.Trim(), (result, message) =>
+        {
+            UIStandart.HideLoading();
+
+            if (result)
+            {
+                UIStandart.Info("Success", "You have successfully registered!");
+            }
+            else
+            {
+                UIStandart.Error("Error", message);
+            }
+        });
     }
 
     private bool CheckInputIsValid()

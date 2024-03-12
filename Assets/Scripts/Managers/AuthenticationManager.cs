@@ -31,26 +31,7 @@ public class AuthenticationManager : MonoSingleton<AuthenticationManager>
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            authProvider.Register("test@gmail.com", "12345678");
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (authProvider.IsLoggedIn())
-            {
-                authProvider.Logout(); 
-            }
-            else
-            {
-                authProvider.Login("test@gmail.com", "12345678");
-            }
-        }
-    }
-
-    public AuthProvider GetAuthProvider()
+    public AuthProvider GetProvider()
     {
         return authProvider;
     }
