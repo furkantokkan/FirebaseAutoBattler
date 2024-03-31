@@ -12,7 +12,7 @@ public abstract class AuthProvider : MonoBehaviour
 
     public abstract void Initialize(string[] args = null);
 
-    public abstract bool IsLoggedIn();
+    public abstract bool IsRegistered();
     public abstract void Login(string userName, string password, Action<bool, string> onComplete);
 
     public abstract void Logout();

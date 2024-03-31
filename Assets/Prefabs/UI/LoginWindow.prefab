@@ -1334,10 +1334,10 @@ RectTransform:
   - {fileID: 2753337409526421542}
   m_Father: {fileID: 8657770116906968130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.79382, y: -71.1918}
-  m_SizeDelta: {x: 361.58765, y: 71.1918}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6697238228714688309
 CanvasRenderer:
@@ -1726,6 +1726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIStandart: {fileID: 0}
+  genderSelect: {fileID: 0}
   MainMenu: {fileID: 0}
   InputUserName: {fileID: 5425919017261612415}
   InputPassword: {fileID: 5461002642661627297}

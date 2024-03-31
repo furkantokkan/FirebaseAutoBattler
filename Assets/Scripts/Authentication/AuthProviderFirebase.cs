@@ -37,7 +37,7 @@ public class AuthProviderFirebase : AuthProvider
         });
     }
 
-    public override bool IsLoggedIn()
+    public override bool IsRegistered()
     {
         return VariableManager.instance.LocalVariableExists(GameConst.USER_NAME_LOGIN_KEY) && VariableManager.instance.LocalVariableExists(GameConst.USER_PASSWORD_KEY);
     }
@@ -103,9 +103,8 @@ public class AuthProviderFirebase : AuthProvider
         {
             Debug.Log("Logged in");
 
-            VariableManager.instance.AddLocalVariable(GameConst.USER_NAME_LOGIN_KEY, userName);
-            VariableManager.instance.AddLocalVariable(GameConst.USER_PASSWORD_KEY, password);
-            onComplete?.Invoke(true, "Logged in");
+
+            onComplete?.Invoke(true, loginTask.Result.User.UserId);
         }
     }
 
@@ -146,7 +145,7 @@ public class AuthProviderFirebase : AuthProvider
         else
         {
             Debug.Log("Registered");
-            onComplete?.Invoke(true, "Registered!");
+            onComplete?.Invoke(true, registerTask.Result.User.UserId);
         }
     }
 }

@@ -13,13 +13,13 @@ public class AuthenticationManager : MonoSingleton<AuthenticationManager>
         switch (authenticationType)
         {
             case AuthenticationType.Firebase:
-                authProvider = GetComponent<AuthProviderFirebase>();
+                authProvider = gameObject.AddComponent<AuthProviderFirebase>();
                 break;
-            case AuthenticationType.Aws:
-                authProvider = GetComponent<AuthProviderAWS>();
+            case AuthenticationType.AWS:
+                authProvider = gameObject.AddComponent<AuthProviderAWS>();
                 break;
-            case AuthenticationType.Playfab:
-                authProvider = GetComponent<AuthProviderPlayfab>();
+            case AuthenticationType.Azure:
+                authProvider = gameObject.AddComponent<AuthProviderAzure>();
                 break;
             case AuthenticationType.Custom:
                 break;

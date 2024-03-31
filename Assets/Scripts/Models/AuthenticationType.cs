@@ -1,7 +1,7 @@
 public enum AuthenticationType
 {
     Firebase,
-    Aws,
-    Playfab,
+    AWS,
+    Azure,
     Custom
 }

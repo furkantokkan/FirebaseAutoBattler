@@ -8,32 +8,38 @@ public class UIMainMenu : MonoBehaviour
 
     [SerializeField] private GameObject LoginWindow;
     [SerializeField] private GameObject RegisterWindow;
-
+    [SerializeField] private GameObject GenderSelectWindow;
     private void Awake()
     {
+
     }
 
     private void Start()
     {
         RegisterWindow.SetActive(false);
         LoginWindow.SetActive(false);
-
-        //if(AuthenticationManager.instance.GetProvider().IsLoggedIn())
-        //{
-        //    UIStandart.Info("Welcome", "You are already logged in!");
-        //}
+        GenderSelectWindow.gameObject.SetActive(false);
+        if (AuthenticationManager.instance.GetProvider().IsRegistered())
+        {
+            LoginWindow.GetComponent<UILogin>().LoginWithCredentials(
+                VariableManager.instance.GetLocalVariable(GameConst.USER_NAME_LOGIN_KEY),
+                VariableManager.instance.GetLocalVariable(GameConst.USER_PASSWORD_KEY)
+                );
+        }
     }
 
     public void Register()
     {
         RegisterWindow.SetActive(true);
         gameObject.SetActive(false);
+        GenderSelectWindow.gameObject.SetActive(false);
     }
 
     public void Login()
     {
         LoginWindow.SetActive(true);
         gameObject.SetActive(false);
+        GenderSelectWindow.gameObject.SetActive(false);
     }
 
     public void QuitButtonAction()

@@ -6,6 +6,8 @@ using UnityEngine;
 public class UILogin : MonoBehaviour
 {
     public UIStandart UIStandart;
+    public UIRegisterGenderSelect genderSelect;
+
     public GameObject MainMenu;
 
     public TMP_InputField InputUserName;
@@ -24,20 +26,41 @@ public class UILogin : MonoBehaviour
             return;
         }
 
+        LoginWithCredentials(InputUserName.text.Trim(), InputPassword.text.Trim());
+    }
+
+    public void LoginWithCredentials(string userName, string password)
+    {
         UIStandart.ShowLoading("Logging in", "Please wait...");
 
-        AuthenticationManager.instance.GetProvider().Login(InputUserName.text.Trim(), InputPassword.text.Trim(), (result, message) =>
+        AuthenticationManager.instance.GetProvider().Login(userName, password, (result, userID) =>
         {
             UIStandart.HideLoading();
 
             if (result)
             {
                 UIStandart.Info("Success", "You have successfully logged in!");
+                VariableManager.instance.AddLocalVariable(GameConst.USER_NAME_LOGIN_KEY, userName);
+                VariableManager.instance.AddLocalVariable(GameConst.USER_PASSWORD_KEY, password);
+
+                UserManager.instance.GetUser(userID, (param) =>
+                {
+                    if (param == null)
+                    {
+                        // TODO: Display gender and nick name screen
+                        genderSelect.Show(userID);
+                    }
+                    else
+                    {
+                        //TODO: go to next scene
+                        Debug.Log("Go To The Main Menu");
+                    }
+                });
             }
             else
             {
                 UIStandart.HideLoading();
-                UIStandart.Error("Error", message);
+                UIStandart.Error("Error", userID);
             }
         });
     }

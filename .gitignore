@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 *.psd
 *.aar
+Assets/Art/UI/MedievalKingdomUI/Artworks/Backgrounds/World_map_4k_backgroud.png
+*.psb
+Assets/Art/UI/MedievalKingdomUI/Artworks/Map_elements/World_map_16k.png

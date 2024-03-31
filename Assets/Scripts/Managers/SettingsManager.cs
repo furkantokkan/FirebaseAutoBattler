@@ -7,6 +7,7 @@ public class SettingsManager : MonoSingleton<SettingsManager>
 {
     public float musicVolume = 0.5f;
     public float SoundVolume = 0.5f;
+    public int WelcomePrize = 5000;
 
     public void Load()
     {

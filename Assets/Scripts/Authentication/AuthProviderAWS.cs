@@ -10,7 +10,7 @@ public class AuthProviderAWS : AuthProvider
         Debug.Log("Aws is Initialized");
     }
 
-    public override bool IsLoggedIn()
+    public override bool IsRegistered()
     {
         throw new System.NotImplementedException();
     }

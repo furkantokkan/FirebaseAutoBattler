@@ -6,6 +6,8 @@ using UnityEngine;
 public class UIRegister : MonoBehaviour
 {
     public UIStandart UIStandart;
+    public UIRegisterGenderSelect genderSelect;
+
     public GameObject MainMenu;
 
     public TMP_InputField InputUserName;
@@ -28,13 +30,24 @@ public class UIRegister : MonoBehaviour
 
         UIStandart.ShowLoading("Registering", "Please wait...");
 
-        AuthenticationManager.instance.GetProvider().Register(InputUserName.text.Trim(), InputPassword.text.Trim(), (result, message) =>
+        string userName = InputUserName.text.Trim();
+        string password = InputPassword.text.Trim();
+
+        AuthenticationManager.instance.GetProvider().Register(userName, password, (result, message) =>
         {
             UIStandart.HideLoading();
 
             if (result)
             {
-                UIStandart.Info("Success", "You have successfully registered!");
+                //UIStandart.Info("Success", "You have successfully registered!");
+                //TODO: Firestore create user
+                //TODO: Register Gender
+
+                VariableManager.instance.AddLocalVariable(GameConst.USER_NAME_LOGIN_KEY, userName);
+                VariableManager.instance.AddLocalVariable(GameConst.USER_PASSWORD_KEY, password);
+
+                genderSelect.Show(message);
+                gameObject.SetActive(false);
             }
             else
             {
