@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2476164500610734644, guid: e867910807a875d4b8109c2b7a50ea23,
+        type: 3}
+      propertyPath: m_text
+      value: Exit
+      objectReference: {fileID: 0}
     - target: {fileID: 2745817992800448168, guid: e867910807a875d4b8109c2b7a50ea23,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -218,6 +223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuFrame Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5443229932127963109, guid: e867910807a875d4b8109c2b7a50ea23,
+        type: 3}
+      propertyPath: m_text
+      value: Register
+      objectReference: {fileID: 0}
     - target: {fileID: 6345250515882973933, guid: e867910807a875d4b8109c2b7a50ea23,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -257,6 +267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649805836753006193, guid: e867910807a875d4b8109c2b7a50ea23,
+        type: 3}
+      propertyPath: m_text
+      value: Login
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

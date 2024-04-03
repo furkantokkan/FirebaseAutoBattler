@@ -77,7 +77,7 @@ public class UIStandart : MonoBehaviour
     {
         CloseAllWindows();
 
-        InfoWindow.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = title;
+        InfoWindow.transform.Find("Caption/Title").GetComponent<TextMeshProUGUI>().text = title;
         InfoWindow.transform.Find("Message").GetComponent<TextMeshProUGUI>().text = message;
         var infoButton = InfoWindow.GetComponentInChildren<Button>();
         infoButton.onClick.RemoveAllListeners();
@@ -99,7 +99,7 @@ public class UIStandart : MonoBehaviour
     {
         CloseAllWindows();
 
-        ErrorWindow.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = title;
+        ErrorWindow.transform.Find("Caption/Title").GetComponent<TextMeshProUGUI>().text = title;
         ErrorWindow.transform.Find("Message").GetComponent<TextMeshProUGUI>().text = message;
         var errorButton = ErrorWindow.GetComponentInChildren<Button>();
         errorButton.onClick.RemoveAllListeners();
@@ -121,7 +121,7 @@ public class UIStandart : MonoBehaviour
     {
         CloseAllWindows();
 
-        ConfirmWindow.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = title;
+        ConfirmWindow.transform.Find("Caption/Title").GetComponent<TextMeshProUGUI>().text = title;
         ConfirmWindow.transform.Find("Message").GetComponent<TextMeshProUGUI>().text = message;
         Button yesButton = ConfirmWindow.GetComponentInChildren<HorizontalLayoutGroup>().transform.GetChild(0).GetComponent<Button>();
         Button noButton = ConfirmWindow.GetComponentInChildren<HorizontalLayoutGroup>().transform.GetChild(1).GetComponent<Button>();
