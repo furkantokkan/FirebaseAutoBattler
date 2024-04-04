@@ -14,10 +14,6 @@ public class UIStandart : MonoBehaviour
     [SerializeField] private GameObject PromptWindow;
     [SerializeField] private GameObject LoadingWindow;
 
-    private void Start()
-    {
-        CloseAllWindows();
-    }
 
 //#if UNITY_EDITOR
 //    private void Update()

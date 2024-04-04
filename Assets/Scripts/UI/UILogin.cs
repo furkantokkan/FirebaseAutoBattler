@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UILogin : MonoBehaviour
 {
@@ -35,11 +37,8 @@ public class UILogin : MonoBehaviour
 
         AuthenticationManager.instance.GetProvider().Login(userName, password, (result, userID) =>
         {
-            UIStandart.HideLoading();
-
             if (result)
             {
-                UIStandart.Info("Success", "You have successfully logged in!");
                 VariableManager.instance.AddLocalVariable(GameConst.USER_NAME_LOGIN_KEY, userName);
                 VariableManager.instance.AddLocalVariable(GameConst.USER_PASSWORD_KEY, password);
 
@@ -49,11 +48,16 @@ public class UILogin : MonoBehaviour
                     {
                         // TODO: Display gender and nick name screen
                         genderSelect.Show(userID);
+                        UIStandart.HideLoading();
                     }
                     else
                     {
                         //TODO: go to next scene
                         Debug.Log("Go To The Main Menu");
+                        DOVirtual.DelayedCall(1f, () =>
+                        {
+                            SceneManager.LoadScene("Game");
+                        });
                     }
                 });
             }
