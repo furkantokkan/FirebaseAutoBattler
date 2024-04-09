@@ -33,7 +33,7 @@ public class UIRegisterGenderSelect : MonoBehaviour
 
         UIStandart.ShowLoading("Registering", "Please wait...");
 
-        UserManager.instance.CreateUser(authID, TglMale.isOn ? GenderType.Man : GenderType.Female, nickName.text.Trim(),
+        UserManager.instance.CreateUser(authID, TglMale.isOn ? NationaltyType.English : NationaltyType.Poland, nickName.text.Trim(),
             (result, param) =>
             {
                 if (result)

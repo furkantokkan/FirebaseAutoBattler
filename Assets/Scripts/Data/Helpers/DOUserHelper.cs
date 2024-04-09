@@ -7,7 +7,7 @@ public class DOUserHelper
     public ObscuredString UserName;
     //public ObscuredLong UserPoints;
     public ObscuredLong Money = 0;
-    public ObscuredInt Gender = (int)GenderType.Man;
+    public ObscuredInt Gender = (int)NationaltyType.English;
     public DateTime welcomePrizeCollectedAt = DateTime.MinValue;
     public ObscuredInt Level = 1;
     public ObscuredInt Experience = 0;

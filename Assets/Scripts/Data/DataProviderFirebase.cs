@@ -8,16 +8,16 @@ public class DataProviderFirebase : DataProvider
 {
     FirebaseFirestore firestore;
 
-    public override void CreateUser(string id, GenderType gender, string nickName, Action<bool, string> onComplete)
+    public override void CreateUser(string id, NationaltyType nationalty, string nickName, Action<bool, string> onComplete)
     {
-        StartCoroutine(CreateUserBackGround(id, gender, nickName, onComplete));
+        StartCoroutine(CreateUserBackGround(id, nationalty, nickName, onComplete));
     }
 
-    private IEnumerator CreateUserBackGround(string id, GenderType gender, string nickName, Action<bool, string> onComplete)
+    private IEnumerator CreateUserBackGround(string id, NationaltyType nationalty, string nickName, Action<bool, string> onComplete)
     {
         var newUser = new FirestoreUserDataHelper()
         {
-            gender = (int)gender,
+            gender = (int)nationalty,
             level = 1,
             money = SettingsManager.instance.WelcomePrize,
             nickName = nickName,

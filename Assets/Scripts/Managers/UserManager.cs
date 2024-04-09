@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UserManager : MonoSingleton<UserManager>
 {
-    public void CreateUser(string authID,GenderType gender, string nickName, Action<bool, string> onComplete)
+    public void CreateUser(string authID,NationaltyType gender, string nickName, Action<bool, string> onComplete)
     {
         DataManager.instance.GetProvider().CreateUser(authID, gender, nickName, onComplete);
     }

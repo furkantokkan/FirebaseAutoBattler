@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DataProviderMySQL : DataProvider
 {
-    public override void CreateUser(string id, GenderType gender, string nickName, Action<bool, string> onComplete)
+    public override void CreateUser(string id, NationaltyType gender, string nickName, Action<bool, string> onComplete)
     {
         throw new NotImplementedException();
     }
