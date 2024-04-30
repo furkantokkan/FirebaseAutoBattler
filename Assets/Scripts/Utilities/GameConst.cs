@@ -9,7 +9,7 @@ public static class GameConst
 
 #if UNITY_EDITOR
     public const int minShopPerNeighbourhood = 5;
-    public const int maxShopPerNeighbourhood = 17;
+    public const int maxShopPerNeighbourhood = 7;
 
     public const int minTributeCollectionDuration = 150;
     public const int maxTributeCollectionDuration = 400;
