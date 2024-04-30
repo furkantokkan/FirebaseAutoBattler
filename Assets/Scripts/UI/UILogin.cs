@@ -64,6 +64,7 @@ public class UILogin : MonoBehaviour
             else
             {
                 UIStandart.HideLoading();
+                ReturnToMenu();
                 UIStandart.Error("Error", userID);
             }
         });
