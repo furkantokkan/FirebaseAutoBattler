@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIRegisterGenderSelect : MonoBehaviour
 {
+    public UILogin LoginWindow;
     public UIStandart UIStandart;
     public TMP_InputField nickName;
     public Toggle TglMale;
@@ -38,11 +39,13 @@ public class UIRegisterGenderSelect : MonoBehaviour
             {
                 if (result)
                 {
-                    Debug.Log("Registered!");
-                    UIStandart.Info("Success", "You have successfully registered!");
+                    UIStandart.ShowLoading("Logging in", "Please wait...");
+                    LoginWindow.LoginWithCredentials(VariableManager.instance.GetLocalVariable(GameConst.USER_NAME_LOGIN_KEY),
+                        VariableManager.instance.GetLocalVariable(GameConst.USER_PASSWORD_KEY));
                 }
                 else
                 {
+                    UIStandart.Error("Error", param);
                     Debug.LogError("Error: " + param);
                 }
 

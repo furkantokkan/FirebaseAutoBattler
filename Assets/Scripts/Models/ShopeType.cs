@@ -5,14 +5,16 @@ using UnityEngine;
 public enum ShopeType
 {
     CropField,
-    Bakery,
-    HuntersHut,
+    Stables,
+    Church,
     Blacksmith,
     Market,
     Tavern,
-    Mine,
+    Alchemist,
     Lumbermill,
-    Vineyard,
+    Tannery,
     Jwellery,
     Tailor,
+    Weaver,
+    Malthouse
 }

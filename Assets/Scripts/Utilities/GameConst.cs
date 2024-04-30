@@ -7,18 +7,30 @@ public static class GameConst
     public const string USER_NAME_LOGIN_KEY = "userName";
     public const string USER_PASSWORD_KEY = "password";
 
+#if UNITY_EDITOR
+    public const int minShopPerNeighbourhood = 5;
+    public const int maxShopPerNeighbourhood = 17;
+
+    public const int minTributeCollectionDuration = 150;
+    public const int maxTributeCollectionDuration = 400;
+
+    public const int minTributeCollectionAmount = 100;
+    public const int maxTributeCollectionAmount = 500;
+#endif
     public static readonly Dictionary<ShopeType, string> NameOfShopeCollection = new Dictionary<ShopeType, string>()
     {
-        {ShopeType.CropField, "Crop Field"},
-        {ShopeType.Bakery, "Bakery"},
-        {ShopeType.HuntersHut, "Hunter's Hut"},
-        {ShopeType.Blacksmith, "Blacksmith"},
-        {ShopeType.Market, "Market"},
-        {ShopeType.Tavern, "Tavern"},
-        {ShopeType.Mine, "Mine"},
-        {ShopeType.Lumbermill, "Lumbermill"},
-        {ShopeType.Vineyard, "Vineyard"},
-        {ShopeType.Jwellery, "Jwellery"},
-        {ShopeType.Tailor, "Tailor"},
+        { ShopeType.Alchemist, "Alchemist`s Workshop" },
+        { ShopeType.Blacksmith, "Blacksmith" },
+        { ShopeType.Church, "Church" },
+        { ShopeType.CropField, "CropField" },
+        { ShopeType.Jwellery, "Jwellery" },
+        { ShopeType.Lumbermill, "Lumbermill" },
+        { ShopeType.Malthouse, "Malthouse" },
+        { ShopeType.Market, "Market" },
+        { ShopeType.Stables, "Stables" },
+        { ShopeType.Tailor, "Tailor" },
+        { ShopeType.Tannery, "Tannery" },
+        { ShopeType.Tavern, "Tavern" },
+        { ShopeType.Weaver, "Weaver`s Workshop" }
     };
 }

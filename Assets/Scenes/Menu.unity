@@ -1288,6 +1288,11 @@ PrefabInstance:
       propertyPath: UIStandart
       value: 
       objectReference: {fileID: 354892471186327930}
+    - target: {fileID: 7160917723387766561, guid: f8beb7b64a1917945872cf9aaf75687a,
+        type: 3}
+      propertyPath: LoginWindow
+      value: 
+      objectReference: {fileID: 3191498129456249223}
     - target: {fileID: 7445170152318199652, guid: f8beb7b64a1917945872cf9aaf75687a,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1564,6 +1569,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 606abcd102ecf83458f19cf200e33158, type: 3}
+--- !u!114 &3191498129456249223 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1383671445182513427, guid: 606abcd102ecf83458f19cf200e33158,
+    type: 3}
+  m_PrefabInstance: {fileID: 3191498129456249222}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787491566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c9c3a753df9fa4ab5ff513c426ead6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6951257127875774025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1895,11 +1912,6 @@ PrefabInstance:
     - target: {fileID: 1517994189770539584, guid: fdb768221b224094797571c7d8ade036,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431641909281266368, guid: fdb768221b224094797571c7d8ade036,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7320611403968533505, guid: fdb768221b224094797571c7d8ade036,

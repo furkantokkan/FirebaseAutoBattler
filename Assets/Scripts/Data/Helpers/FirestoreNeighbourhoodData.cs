@@ -10,17 +10,17 @@ public class FirestoreNeighbourhoodData
     public string OwnerID { get; set; }
 
     [FirestoreProperty]
-    public string ownerName { get; set; }
+    public string OwnerName { get; set; }
 
     [FirestoreProperty]
-    public string neighbourhoodName { get; set; }
+    public string NeighbourhoodName { get; set; }
 
     [FirestoreProperty]
-    public string worldID { get; set; }
+    public string WorldID { get; set; }
 
     [FirestoreProperty]
-    public int x { get; set; }
+    public int X { get; set; }
 
     [FirestoreProperty]
-    public int y { get; set; }
+    public int Y { get; set; }
 }

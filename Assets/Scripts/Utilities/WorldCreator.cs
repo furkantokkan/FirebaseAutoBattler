@@ -13,7 +13,10 @@ public class WorldCreator : MonoBehaviour
     [Command("world-x")] public int Width = 25;
     [Command("world-y")] public int Height = 25;
 
+    [SerializeField] private ShopImages[] ShopImages;
+
     FirebaseFirestore firestore;
+
 
     private void Start()
     {
@@ -24,12 +27,6 @@ public class WorldCreator : MonoBehaviour
     private void CreateWorld()
     {
         StartCoroutine(CreateWorlds());
-    }
-
-    [Command("create-shops")]
-    private void CreateShop()
-    {
-        StartCoroutine(CreateShops());
     }
 
     private IEnumerator CreateWorlds()
@@ -45,28 +42,93 @@ public class WorldCreator : MonoBehaviour
 
                 var newNeighbourhood = new FirestoreNeighbourhoodData()
                 {
-                    worldID = "w1",
-                    neighbourhoodName = $"Neighbourhood #{neigbourCount}",
-                    x = w,
-                    y = h,
+                    WorldID = "w1",
+                    NeighbourhoodName = $"Neighbourhood #{neigbourCount}",
+                    X = w,
+                    Y = h,
                     OwnerID = "",
-                    ownerName = ""
+                    OwnerName = ""
 
                 };
-                Debug.Log("Creating Neighbourhood " + newNeighbourhood.neighbourhoodName + " at " + newNeighbourhood.x + "x" + newNeighbourhood.y);
+                Debug.Log("Creating Neighbourhood " + newNeighbourhood.NeighbourhoodName + " at x:" + newNeighbourhood.X + " y:" + newNeighbourhood.Y);
                 var addNeighbourhoodTask = firestore.Collection("worlds").AddAsync(newNeighbourhood);
                 yield return new WaitUntil(() => addNeighbourhoodTask.IsCompleted);
+
+                if (addNeighbourhoodTask.IsCompleted)
+                {
+                    yield return CreateShops(addNeighbourhoodTask.Result.Id);
+                }
+                else
+                {
+                    Debug.Log("Neigbourhood cannot be created");
+                }
             }
         }
 
         Debug.Log("Worlds Created");
     }
 
-    private IEnumerator CreateShops()
+    private IEnumerator CreateShops(string neighbourhoodID)
     {
-        yield break;
-    }
+        int numberOfShopes = UnityEngine.Random.Range(GameConst.minShopPerNeighbourhood, GameConst.maxShopPerNeighbourhood);
 
+        int selectesShope;
+        int avatarIndex;
+        int tributecollectionDuration;
+        int tributeCollectionAmount;
+        string owner = "";
+
+
+        Debug.Log("Creating Shops for Neighbourhood " + neighbourhoodID + " Amount: " + numberOfShopes);
+
+        for (int i = 0; i < numberOfShopes; i++)
+        {
+            //shope and avatar selection
+
+            selectesShope = UnityEngine.Random.Range(0, ShopImages.Length);
+
+            avatarIndex = UnityEngine.Random.Range(0, ShopImages[selectesShope].shopImages.Length);
+
+            //tribute collection duration
+
+            tributecollectionDuration = UnityEngine.Random.Range(GameConst.minTributeCollectionDuration, GameConst.maxTributeCollectionDuration);
+
+
+            //tribute collection amount
+
+            tributeCollectionAmount = UnityEngine.Random.Range(GameConst.minTributeCollectionAmount, GameConst.maxTributeCollectionAmount);
+
+
+            //Owner
+
+            if (UnityEngine.Random.Range(0f, 1f) <= 0.2f) //20% chance of having an owner
+            {
+                owner = "BANDITS";
+            }
+            else
+            {
+                owner = "";
+            }
+
+           var shop = new FirestoreNeighbourhoodShopData()
+           {
+               ShopType = ShopImages[selectesShope].shopName,
+               AvatarIndex = avatarIndex,
+               TributeCreationDuration = tributecollectionDuration,
+               TributeAmount = tributeCollectionAmount,
+               OwnerID = owner
+           };
+
+            var addShopeTask = firestore.Collection("worlds").Document(neighbourhoodID).Collection("shops").AddAsync(shop);
+            yield return new WaitUntil(() => addShopeTask.IsCompleted);
+
+            if (!addShopeTask.IsCompleted)
+            {
+                Debug.Log("Shop cannot be created, shop number is: " + i);
+            }
+        }
+    }
 
 #endif
 }
+

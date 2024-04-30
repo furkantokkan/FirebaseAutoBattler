@@ -15,17 +15,42 @@ public class DataProviderFirebase : DataProvider
 
     private IEnumerator CreateUserBackGround(string id, NationaltyType nationalty, string nickName, Action<bool, string> onComplete)
     {
+        //find an empty place for a user
+        var findEmptySpaceTask = firestore.Collection("worlds").WhereEqualTo("OwnerID", "").GetSnapshotAsync();
+        yield return new WaitUntil(() => findEmptySpaceTask.IsCompleted);
+
+        if (findEmptySpaceTask.IsFaulted)
+        {
+            onComplete?.Invoke(false, "There is no remaining space");
+            yield break;
+        }
+
+        string availableNegiborhoodID = "N/A";
+        foreach (var item in findEmptySpaceTask.Result.Documents)
+        {
+            availableNegiborhoodID = item.Id;
+            break;
+        }
+
+        if (availableNegiborhoodID == "N/A")
+        {
+            onComplete?.Invoke(false, "There is no space remaining");
+            yield break;
+        }
+
+        //create a user
         var newUser = new FirestoreUserDataHelper()
         {
-            gender = (int)nationalty,
-            level = 1,
-            money = SettingsManager.instance.WelcomePrize,
-            nickName = nickName,
-            userID = id,
+            Gender = (int)nationalty,
+            Level = 1,
+            Money = SettingsManager.instance.WelcomePrize,
+            NickName = nickName,
+            UserID = id,
             // TODO: Collet fime from a time manager instead of device time
-            welcomePrizeCollectedAt = DateTime.Now,
-            userCreatedAt = DateTime.Now,
-            experience = 0
+            WelcomePrizeCollectedAt = DateTime.Now,
+            UserCreatedAt = DateTime.Now,
+            Experience = 0,
+            NeighborhoodID = availableNegiborhoodID
         };
 
         var addUserTask = firestore.Collection("Users").AddAsync(newUser);
@@ -38,6 +63,23 @@ public class DataProviderFirebase : DataProvider
         }
 
         string addedUserId = addUserTask.Result.Id;
+
+        //update land owner
+        var updates = new Dictionary<FieldPath, object>()
+        {
+            {new FieldPath("OwnerID"), addedUserId },
+            {new FieldPath("OwnerName"), nickName }
+        };
+        var updateUserTask = firestore.Collection("worlds").Document(availableNegiborhoodID).UpdateAsync(updates);
+        yield return new WaitUntil(() => updateUserTask.IsCompleted);
+
+        if (updateUserTask.IsFaulted)
+        {
+            onComplete?.Invoke(false, "User has not able to update");
+            yield break;
+        }
+
+
         onComplete?.Invoke(true, addedUserId);
     }
 

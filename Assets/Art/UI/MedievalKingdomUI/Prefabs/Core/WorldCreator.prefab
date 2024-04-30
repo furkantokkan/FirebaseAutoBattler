@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3737086662737133199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289322916678887672}
+  - component: {fileID: 4569792260821489469}
+  - component: {fileID: 7497849371532542486}
+  m_Layer: 0
+  m_Name: WorldCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &289322916678887672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737086662737133199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.828066, y: -0.42643046, z: 44.431953}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4569792260821489469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737086662737133199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f841758e0dd02c478a96d0686918827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEditorOnly: 1
+--- !u!114 &7497849371532542486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737086662737133199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2bc20fd8fbd764ba880f7bb2b0adcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 25
+  Height: 25
+  ShopImages:
+  - shopName: 0
+    shopImages:
+    - {fileID: 21300000, guid: 1a6489d8b090e7e4a9bc6f97d1b9a4f6, type: 3}
+  - shopName: 1
+    shopImages:
+    - {fileID: 21300000, guid: 1507b48411ed2e64ab08489e5f1c16ae, type: 3}
+    - {fileID: 21300000, guid: 8cbee56bc2865144d8890be863b97767, type: 3}
+  - shopName: 2
+    shopImages:
+    - {fileID: 21300000, guid: 10e09747cc6297c4caee4002425b4cfe, type: 3}
+    - {fileID: 21300000, guid: a0024bd085d43f9499098b5b84cf3f88, type: 3}
+    - {fileID: 21300000, guid: 32c80d9b75a28d542bc5a831445d4898, type: 3}
+  - shopName: 3
+    shopImages:
+    - {fileID: 21300000, guid: d455b9a78746cb04e90d5a5945c4e57b, type: 3}
+    - {fileID: 21300000, guid: 81f8f561b1a3a6748b2e808af14121e6, type: 3}
+  - shopName: 4
+    shopImages:
+    - {fileID: 21300000, guid: accda7a30c02103458fbbcb2f6657db2, type: 3}
+    - {fileID: 21300000, guid: dc1229cb8caba3b418388e6246f3bff9, type: 3}
+  - shopName: 5
+    shopImages:
+    - {fileID: 21300000, guid: f94575fda904ebf4ebcd3104b729523d, type: 3}
+    - {fileID: 21300000, guid: 694181568e37c2643b437deff1c13b81, type: 3}
+    - {fileID: 21300000, guid: 945f50b221e1cf14eb5f97a0e8ee882c, type: 3}
+  - shopName: 6
+    shopImages:
+    - {fileID: 21300000, guid: 48dfe23b8215825438c0c894ac977341, type: 3}
+    - {fileID: 21300000, guid: 755055a4bb6d0c6489d9a74d60512bdc, type: 3}
+    - {fileID: 21300000, guid: 6e36432a067ffae408dd950ab6df5faa, type: 3}
+  - shopName: 7
+    shopImages:
+    - {fileID: 21300000, guid: 4240031dc1530fe48b9d4c45913e2d3b, type: 3}
+  - shopName: 8
+    shopImages:
+    - {fileID: 21300000, guid: ebe5797cbbcf34c4aa37fafff0e7f0c2, type: 3}
+    - {fileID: 21300000, guid: 54db1471531688a4d8b9c723d7533642, type: 3}
+  - shopName: 9
+    shopImages:
+    - {fileID: 21300000, guid: ec7cd5df278734747a17269775db21de, type: 3}
+    - {fileID: 21300000, guid: dfa5392a498de574a89d5dd5a942ce52, type: 3}
+  - shopName: 10
+    shopImages:
+    - {fileID: 21300000, guid: 6ed6edb0cd5ad3543843abfdf4806e1f, type: 3}
+  - shopName: 11
+    shopImages:
+    - {fileID: 21300000, guid: b9346053d6a91bd4e8660842f5aaa381, type: 3}
+    - {fileID: 21300000, guid: d11e647d420b2a84f934ef3019d0dfbe, type: 3}
+  - shopName: 12
+    shopImages:
+    - {fileID: 21300000, guid: 290ea565ac8fd6f43b2f0968903ce60c, type: 3}
+    - {fileID: 21300000, guid: fa5a3104b5f60fd40ae27a61702d13a1, type: 3}
