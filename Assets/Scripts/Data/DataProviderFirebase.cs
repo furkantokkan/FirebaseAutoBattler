@@ -90,7 +90,7 @@ public class DataProviderFirebase : DataProvider
 
     private IEnumerator GetUserBackGround(string id, Action<DOUserHelper> onComplete)
     {
-        var getUserTask = firestore.Collection("Users").WhereEqualTo("userID", id).GetSnapshotAsync();
+        var getUserTask = firestore.Collection("Users").WhereEqualTo("UserID", id).GetSnapshotAsync();
         yield return new WaitUntil(() => getUserTask.IsCompleted);
 
         if (getUserTask.IsFaulted)
@@ -111,11 +111,11 @@ public class DataProviderFirebase : DataProvider
 
             onComplete(new DOUserHelper()
             {
-                Gender = int.Parse(data["gender"].ToString()),
-                Level = int.Parse(data["level"].ToString()),
-                Money =  long.Parse(data["money"].ToString()),
-                UserName = data["nickName"].ToString(),
-                Experience = int.Parse(data["experience"].ToString())
+                Gender = int.Parse(data["Gender"].ToString()),
+                Level = int.Parse(data["Level"].ToString()),
+                Money =  long.Parse(data["Money"].ToString()),
+                UserName = data["NickName"].ToString(),
+                Experience = int.Parse(data["Experience"].ToString())
             });
 
             break;

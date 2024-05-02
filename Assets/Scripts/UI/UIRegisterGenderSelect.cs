@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIRegisterGenderSelect : MonoBehaviour
@@ -19,7 +21,7 @@ public class UIRegisterGenderSelect : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void Hidde()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }
@@ -42,6 +44,7 @@ public class UIRegisterGenderSelect : MonoBehaviour
                     UIStandart.ShowLoading("Logging in", "Please wait...");
                     LoginWindow.LoginWithCredentials(VariableManager.instance.GetLocalVariable(GameConst.USER_NAME_LOGIN_KEY),
                         VariableManager.instance.GetLocalVariable(GameConst.USER_PASSWORD_KEY));
+
                 }
                 else
                 {

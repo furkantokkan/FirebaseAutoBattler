@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Firebase;
 using Firebase.Auth;
 using System;
@@ -5,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AuthProviderFirebase : AuthProvider
 {
@@ -102,7 +104,6 @@ public class AuthProviderFirebase : AuthProvider
         else
         {
             Debug.Log("Logged in");
-
 
             onComplete?.Invoke(true, loginTask.Result.User.UserId);
         }
